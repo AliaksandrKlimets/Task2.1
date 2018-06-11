@@ -14,12 +14,10 @@ import java.util.regex.Pattern;
 /**
  * This class parses test inti paragraphs
  */
-public class ParagraphParser extends BaseParser {
+public class ParagraphParser {
+    private SentenceParser nextParser = new SentenceParser();
     private static final String REGEX_PARAGRAPH = "regex.paragraph";
     private static final String REGEX_CODE = "regex.code_list";
-
-
-    @Override
     public TextEntity parse(String content) {
         CompositeEntity paragraph = new CompositeEntity();
         List<String> paragraphItems = new ArrayList<>();
@@ -27,7 +25,6 @@ public class ParagraphParser extends BaseParser {
         while (matcher.find()){
             paragraphItems.add(matcher.group()+"\n");
         }
-
         for(String paragraphItem:paragraphItems){
             matcher = Pattern.compile(ManagerBundle.getProperty(REGEX_CODE)).matcher(paragraphItem);
             if(matcher.find()){

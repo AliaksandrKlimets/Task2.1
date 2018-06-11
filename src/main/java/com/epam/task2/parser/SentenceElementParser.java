@@ -14,25 +14,23 @@ import java.util.regex.Pattern;
 /**
  * This class parses sentences into words and punctuation marks
  */
-public class SentenceElementParser extends BaseParser {
+public class SentenceElementParser {
     private static final String REGEX_WORD = "regex.word";
-    @Override
-    public TextEntity parse(String content){
-        //System.out.println(content);
+
+    public TextEntity parse(String content) {
         CompositeEntity sentenceEntity = new CompositeEntity();
         List<String> sentenceElement = new ArrayList<>();
         Matcher matcher = Pattern.compile(ManagerBundle.getProperty(REGEX_WORD)).matcher(content);
-        while (matcher.find()){
+        while (matcher.find()) {
             sentenceElement.add(matcher.group());
         }
-        for(String sentenceElem: sentenceElement){
-            String str=sentenceElem;
-                if ((Pattern.compile("[ \\t]+").matcher(sentenceElem).find())) {
-                    str = " ";
-                }
+        for (String sentenceElem : sentenceElement) {
+            String str = sentenceElem;
+            if ((Pattern.compile("[ \\t]+").matcher(sentenceElem).find())) {
+                str = " ";
+            }
             sentenceEntity.addChild(new LeafEntity(str));
         }
         return sentenceEntity;
     }
-
 }

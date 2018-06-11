@@ -7,5 +7,7 @@ package com.epam.task2.entity;
 public abstract class TextEntity {
 
     public abstract boolean isLeaf();
+
     public abstract int size();
+
 }

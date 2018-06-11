@@ -20,13 +20,15 @@ public class LeafEntity extends TextEntity {
 
     @Override
     public int size() {
-        return  this.content.length();
+        return this.content.length();
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return content;
     }
 
-    public String getContent(){return content;}
+    public String getContent() {
+        return content;
+    }
 }
